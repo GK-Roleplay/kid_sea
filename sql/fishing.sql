@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS `kid_sea_players` (
+  `identifier` varchar(80) NOT NULL,
+  `xp` int NOT NULL DEFAULT 0,
+  `level` int NOT NULL DEFAULT 1,
+  `wallet` int NOT NULL DEFAULT 0,
+  `selected_boat_level` int NOT NULL DEFAULT 1,
+  `sea_enabled` tinyint(1) NOT NULL DEFAULT 0,
+  `stage` varchar(32) NOT NULL DEFAULT 'job_off',
+  `active_run` longtext DEFAULT NULL,
+  `fish_hold` longtext DEFAULT NULL,
+  `hold_used_grams` int NOT NULL DEFAULT 0,
+  `daily_runs` int NOT NULL DEFAULT 0,
+  `last_reset_date` date NOT NULL,
+  `runs_completed` int NOT NULL DEFAULT 0,
+  `total_earned` int NOT NULL DEFAULT 0,
+  `total_fish_grams` int NOT NULL DEFAULT 0,
+  `waypoint_enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `manual_route` varchar(32) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`identifier`),
+  KEY `idx_kid_sea_level` (`level`),
+  KEY `idx_kid_sea_daily` (`last_reset_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

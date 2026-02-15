@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid Sea Tablet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="hidden">
+        <div class="bg-glow"></div>
+        <div class="tablet">
+            <header class="tablet-header">
+                <div>
+                    <p class="eyebrow">Kid-Friendly Sea Job</p>
+                    <h1 id="tabletTitle">Sea Explorer Tablet</h1>
+                </div>
+                <button id="closeBtn" class="ghost-btn">Close</button>
+            </header>
+
+            <section class="status-row">
+                <div class="card xp-card">
+                    <div class="row-between">
+                        <span id="levelLabel">Level 1</span>
+                        <span id="xpLabel">0 XP</span>
+                    </div>
+                    <div class="xp-track"><div id="xpFill" class="xp-fill"></div></div>
+                    <p id="bonusLabel" class="small-text">Level bonus: +0%</p>
+                </div>
+                <div class="card daily-card">
+                    <p class="small-title">Daily Runs</p>
+                    <p id="dailyLabel">0 / 0</p>
+                    <p id="resetLabel" class="small-text">Reset: -</p>
+                </div>
+                <div class="card wallet-card">
+                    <p class="small-title">Backup Wallet</p>
+                    <p id="walletLabel">$0</p>
+                    <p class="small-text">Used if cash export is offline</p>
+                </div>
+            </section>
+
+            <main class="tablet-main">
+                <section class="card quest-card">
+                    <div class="row-between">
+                        <h2>Sea Objective</h2>
+                        <button id="waypointBtn" class="ghost-btn small">Waypoint: ON</button>
+                    </div>
+                    <div class="status-pills">
+                        <span id="stagePill" class="pill">Stage: -</span>
+                        <span id="routePill" class="pill">Route: -</span>
+                    </div>
+                    <p id="objectiveText" class="objective-text">Loading objective...</p>
+                    <ul id="questSteps" class="steps"></ul>
+                </section>
+
+                <section class="card inventory-card">
+                    <h2>Hold Inventory</h2>
+                    <p id="holdLabel" class="small-text">0g / 0g</p>
+                    <div class="xp-track"><div id="holdFill" class="xp-fill"></div></div>
+                    <div id="fishList" class="recipe-list"></div>
+                    <p id="runsLabel" class="small-text">Runs complete: 0</p>
+                    <p id="earnedLabel" class="small-text">Total earned: $0</p>
+                </section>
+
+                <section class="card action-card">
+                    <div class="quick-action">
+                        <div>
+                            <p class="small-title">Guided Action</p>
+                            <p id="nextActionHint" class="small-text">Follow the objective to continue your run.</p>
+                        </div>
+                        <button id="nextActionBtn" class="primary-btn">Continue</button>
+                    </div>
+
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="run">Run</button>
+                        <button class="tab-btn" data-tab="boats">Boats</button>
+                        <button class="tab-btn" data-tab="market">Market</button>
+                    </div>
+
+                    <div class="tab-content" data-content="run">
+                        <h2>Longline Run</h2>
+                        <p class="small-text">Deploy and reel at sea markers.</p>
+                        <div class="row-between" style="margin-top:8px; gap:8px;">
+                            <button id="startRunBtn" class="primary-btn">Start Run</button>
+                            <button id="deployBtn" class="primary-btn">Deploy Line</button>
+                            <button id="reelBtn" class="primary-btn">Reel Line</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" data-content="boats">
+                        <h2>Boat Unlocks</h2>
+                        <p id="selectedBoatText" class="small-text">Selected boat: -</p>
+                        <div id="boatList" class="recipe-list"></div>
+                        <div class="row-between" style="margin-top:8px;">
+                            <button id="spawnBoatBtn" class="primary-btn">Spawn Selected Boat</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" data-content="market">
+                        <h2>Fish Market</h2>
+                        <p class="small-text">Sell your fish at market marker for payout.</p>
+                        <div class="row-between" style="margin-top:8px;">
+                            <button id="sellBtn" class="primary-btn">Sell Catches</button>
+                        </div>
+                    </div>
+
+                    <p class="small-text shortcut-hint">Shortcuts: `1` Run, `2` Boats, `3` Market, `Enter` Guided Action</p>
+                </section>
+            </main>
+        </div>
+
+        <div id="progressOverlay" class="progress-overlay hidden">
+            <div class="progress-box">
+                <p id="progressLabel">Working...</p>
+                <div class="xp-track"><div id="progressFill" class="xp-fill"></div></div>
+            </div>
+        </div>
+
+        <div id="receiptModal" class="receipt-modal hidden">
+            <div class="receipt-card">
+                <h3>Sea Run Summary</h3>
+                <ul id="receiptList"></ul>
+                <p id="receiptTotal" class="receipt-total"></p>
+                <button id="receiptClose" class="primary-btn">Great!</button>
+            </div>
+        </div>
+
+        <div id="toastStack" class="toast-stack"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
